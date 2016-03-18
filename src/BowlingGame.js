@@ -15,17 +15,22 @@ function BowlingGame() {
 function Frame() {
   let rolledPins = [];
   let nextFrame;
+
   function roll(pins) {
     if (!isFull()) return rolledPins.push(pins);
+    getNextFrame().roll(pins);
+  }
+
+  function getNextFrame() {
     if (!nextFrame) nextFrame = Frame();
-    return nextFrame.roll(pins);
+    return nextFrame;
   }
 
   function score() {
     let score = rolledPins.reduce((first, second) => first + second, 0);
     if (nextFrame) {
+      if (isStrike()) score += nextFrame.first() + nextFrame.second();
       if (isSpare()) score += nextFrame.first();
-      if (isStrike()) score += nextFrame.score();
       score += nextFrame.score();
     }
     return score;
@@ -54,6 +59,7 @@ function Frame() {
   return {
     roll : roll,
     first: first,
+    second : second,
     score : score
   };
 }
