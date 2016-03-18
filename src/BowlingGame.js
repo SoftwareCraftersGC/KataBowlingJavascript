@@ -39,6 +39,15 @@ function Frame(position) {
     return score;
   }
 
+  function first() {
+    return rolledPins[0];
+  }
+
+  function second() {
+    if (isStrike() && !isLast()) return getNextFrame().first();
+    return rolledPins[1];
+  }
+
   function isFull() {
     return !isLast() && (rolledPins.length == 2 || isStrike());
   }
@@ -53,15 +62,6 @@ function Frame(position) {
 
   function isLast() {
     return actualFrameCount === MAXIMUM_NUMBER_OF_FRAMES;
-  }
-
-  function first() {
-    return rolledPins[0];
-  }
-
-  function second() {
-    if (isStrike() && !isLast()) return getNextFrame().first();
-    return rolledPins[1];
   }
 
   return {
