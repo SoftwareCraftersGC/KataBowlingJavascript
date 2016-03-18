@@ -55,8 +55,13 @@ describe('BowlingGame Should', () => {
   });
 
   it('have a score of 150 when the game is finished', () => {
-    const rolls = [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5];
-    rolls.forEach(bowlingGame.roll);
+    allRollsAreSpare();
     bowlingGame.score().should.equal(150);
   });
+
+  function allRollsAreSpare() {
+    for (let i = 0; i < 21; i++) {
+      bowlingGame.roll(5);
+    }
+  }
 });
