@@ -12,7 +12,8 @@ function BowlingGame() {
   };
 }
 
-function Frame() {
+function Frame(position) {
+  let actualPosition = position || 1;
   let rolledPins = [];
   let nextFrame;
 
@@ -22,7 +23,7 @@ function Frame() {
   }
 
   function getNextFrame() {
-    if (!nextFrame) nextFrame = Frame();
+    if (!nextFrame) nextFrame = Frame(actualPosition + 1);
     return nextFrame;
   }
 
@@ -37,6 +38,7 @@ function Frame() {
   }
 
   function isFull() {
+    if (actualPosition === 10) return false;
     return rolledPins.length == 2 || isStrike();
   }
 
