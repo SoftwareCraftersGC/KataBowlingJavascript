@@ -29,11 +29,18 @@ describe('BowlingGame Should', () => {
     bowlingGame.score().should.equal(24);
   });
 
-  it('have a score of 24 when the first roll is a strike and the following ones are normal', () => {
+  it('have a score of 98 when is a normal game', () => {
     let bowlingGame = BowlingGame();
     let scores = [2, 3, 5, 5, 8, 1, 4, 2, 10, 5, 3, 6, 1, 6, 4, 3, 7, 1, 2];
     scores.forEach(bowlingGame.roll);
     bowlingGame.score().should.equal(98);
+  });
+
+  it('have a score of 47 when there are two followed strikes', () => {
+    let bowlingGame = BowlingGame();
+    let scores = [10, 10, 3, 4];
+    scores.forEach(bowlingGame.roll);
+    bowlingGame.score().should.equal(47);
   });
 
 

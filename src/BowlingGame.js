@@ -30,7 +30,7 @@ function Frame() {
     let score = rolledPins.reduce((first, second) => first + second, 0);
     if (nextFrame) {
       if (isStrike()) score += nextFrame.first() + nextFrame.second();
-      if (isSpare()) score += nextFrame.first();
+      else if (isSpare()) score += nextFrame.first();
       score += nextFrame.score();
     }
     return score;
@@ -53,6 +53,7 @@ function Frame() {
   }
 
   function second() {
+    if (isStrike()) return getNextFrame().first();
     return rolledPins[1];
   }
 
