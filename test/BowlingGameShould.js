@@ -50,6 +50,14 @@ describe('BowlingGame Should', () => {
     bowlingGame.score().should.equal(132);
   });
 
+  it('have a score of 300 when the game is finished', () => {
+    let bowlingGame = BowlingGame();
+    let scores = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
+    scores.forEach(bowlingGame.roll);
+    bowlingGame.score().should.equal(300);
+  });
+
+
 
 
 });
