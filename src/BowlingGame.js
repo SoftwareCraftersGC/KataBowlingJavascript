@@ -9,7 +9,8 @@ function BowlingGame() {
 }
 
 function Frame(position) {
-  let actualPosition = position || 1;
+  const MAXIMUM_NUMBER_OF_FRAMES = 10;
+  const actualPosition = position || 1;
   let rolledPins = [];
   let nextFrame;
 
@@ -48,7 +49,7 @@ function Frame(position) {
   }
 
   function isLast() {
-    return actualPosition === 10;
+    return actualPosition === MAXIMUM_NUMBER_OF_FRAMES;
   }
 
   function first() {
