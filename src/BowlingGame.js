@@ -10,7 +10,7 @@ function BowlingGame() {
 
 function Frame(position) {
   const MAXIMUM_NUMBER_OF_FRAMES = 10;
-  const actualPosition = position || 1;
+  const actualFrameCount = position || 1;
   let rolledPins = [];
   let nextFrame;
 
@@ -20,14 +20,14 @@ function Frame(position) {
   }
 
   function getNextFrame() {
-    if (!nextFrame) nextFrame = Frame(actualPosition + 1);
+    if (!nextFrame) nextFrame = Frame(actualFrameCount + 1);
     return nextFrame;
   }
 
   function score() {
     let score = rolledPins.reduce((first, second) => first + second, 0);
     if (nextFrame) {
-      if (isLast()) score += first() + second() + third();
+      if (isLast()) score += score;
       else if (isStrike()) score += nextFrame.first() + nextFrame.second();
       else if (isSpare()) score += nextFrame.first();
       score += nextFrame.score();
@@ -48,7 +48,7 @@ function Frame(position) {
   }
 
   function isLast() {
-    return actualPosition === MAXIMUM_NUMBER_OF_FRAMES;
+    return actualFrameCount === MAXIMUM_NUMBER_OF_FRAMES;
   }
 
   function first() {
