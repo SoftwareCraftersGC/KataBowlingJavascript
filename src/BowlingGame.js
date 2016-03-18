@@ -3,12 +3,8 @@
 function BowlingGame() {
   let frame = Frame();
   return {
-    roll : pins => {
-      frame.roll(pins);
-    },
-    score : () => {
-      return frame.score();
-    }
+    roll : frame.roll,
+    score : frame.score
   };
 }
 
