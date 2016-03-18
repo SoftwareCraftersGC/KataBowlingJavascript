@@ -29,20 +29,20 @@ function Frame(position) {
     if (nextFrame) {
       score += nextFrame.score();
       if (isSpare()) return score + nextFrame.firstRoll();
-      if (isStrike()) return score + nextFrame.firstRoll() + nextFrame.second();
+      if (isStrike()) return score + nextFrame.firstRoll() + nextFrame.secondRoll();
     }
     return score;
   }
 
   function calculateFramePoints() {
-    return rolledPins.reduce((firstRoll, second) => firstRoll + second, 0);
+    return rolledPins.reduce((firstRoll, secondRoll) => firstRoll + secondRoll, 0);
   }
 
   function firstRoll() {
     return rolledPins[0];
   }
 
-  function second() {
+  function secondRoll() {
     if (isStrike() && !isLast()) return getNextFrame().firstRoll();
     return rolledPins[1];
   }
@@ -56,7 +56,7 @@ function Frame(position) {
   }
 
   function isSpare() {
-    return firstRoll() + second() === 10;
+    return firstRoll() + secondRoll() === 10;
   }
 
   function isStrike() {
@@ -70,7 +70,7 @@ function Frame(position) {
   return {
     roll : roll,
     firstRoll: firstRoll,
-    second : second,
+    secondRoll : secondRoll,
     score : score
   };
 }
