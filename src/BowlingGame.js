@@ -25,16 +25,11 @@ function Frame(position) {
   }
 
   function score() {
-    return calculateScore();
-  }
-
-  function calculateScore() {
     let score = rolledPins.reduce((first, second) => first + second, 0);
     if (nextFrame) {
       score += nextFrame.score();
-      if (isLast()) return score * 2;
-      if (isStrike()) return score + nextFrame.first() + nextFrame.second();
       if (isSpare()) return score + nextFrame.first();
+      if (isStrike()) return score + nextFrame.first() + nextFrame.second();
     }
     return score;
   }
