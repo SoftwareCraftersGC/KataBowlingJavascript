@@ -36,8 +36,7 @@ function Frame(position) {
   }
 
   function isFull() {
-    if (actualPosition === 10) return false;
-    return rolledPins.length == 2 || isStrike();
+    return !isLast() && (rolledPins.length == 2 || isStrike());
   }
 
   function isSpare() {
