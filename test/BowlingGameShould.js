@@ -59,8 +59,4 @@ describe('BowlingGame Should', () => {
     rolls.forEach(bowlingGame.roll);
     bowlingGame.score().should.equal(150);
   });
-
-
-
-
 });
