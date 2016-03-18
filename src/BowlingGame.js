@@ -15,7 +15,7 @@ function Frame(position) {
   let nextFrame;
 
   function roll(pins) {
-    if (!isFull()) return rolledPins.push(pins);
+    if (!isFilledFrame()) return rolledPins.push(pins);
     getNextFrame().roll(pins);
   }
 
@@ -43,8 +43,12 @@ function Frame(position) {
     return rolledPins[1];
   }
 
-  function isFull() {
-    return !isLast() && (rolledPins.length == 2 || isStrike());
+  function isFilledFrame() {
+    return !isLast() && (isFullFrame() || isStrike());
+  }
+
+  function isFullFrame() {
+    return rolledPins.length == 2;
   }
 
   function isSpare() {
