@@ -16,12 +16,9 @@ function Frame() {
   let rolledPins = [];
   let nextFrame;
   function roll(pins) {
-    if (rolledPins.length == 2) {
-      if (!nextFrame) nextFrame = Frame();
-      nextFrame.roll(pins);
-    } else {
-      rolledPins.push(pins);
-    }
+    if (rolledPins.length < 2) return rolledPins.push(pins);
+    if (!nextFrame) nextFrame = Frame();
+    return nextFrame.roll(pins);
   }
 
   function score() {
