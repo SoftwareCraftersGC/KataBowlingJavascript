@@ -25,13 +25,17 @@ function Frame(position) {
   }
 
   function score() {
-    let score = rolledPins.reduce((first, second) => first + second, 0);
+    let score = calculateFramePoints();
     if (nextFrame) {
       score += nextFrame.score();
       if (isSpare()) return score + nextFrame.first();
       if (isStrike()) return score + nextFrame.first() + nextFrame.second();
     }
     return score;
+  }
+
+  function calculateFramePoints() {
+    return rolledPins.reduce((first, second) => first + second, 0);
   }
 
   function first() {
