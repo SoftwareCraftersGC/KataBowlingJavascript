@@ -21,4 +21,12 @@ describe('BowlingGame Should', () => {
     bowlingGame.score().should.equal(21);
   });
 
+  it('have a score of  24 when the first roll is a strike and the following ones are normal', () => {
+    let bowlingGame = BowlingGame();
+    bowlingGame.roll(10);
+    bowlingGame.roll(4);
+    bowlingGame.roll(3);
+    bowlingGame.score().should.equal(24);
+  });
+
 });

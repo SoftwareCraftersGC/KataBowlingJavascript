@@ -16,7 +16,7 @@ function Frame() {
   let rolledPins = [];
   let nextFrame;
   function roll(pins) {
-    if (rolledPins.length < 2) return rolledPins.push(pins);
+    if (!isFull()) return rolledPins.push(pins);
     if (!nextFrame) nextFrame = Frame();
     return nextFrame.roll(pins);
   }
@@ -25,13 +25,22 @@ function Frame() {
     let score = rolledPins.reduce((first, second) => first + second, 0);
     if (nextFrame) {
       if (isSpare()) score += nextFrame.first();
+      if (isStrike()) score += nextFrame.score();
       score += nextFrame.score();
     }
     return score;
   }
 
+  function isFull() {
+    return rolledPins.length == 2 || isStrike();
+  }
+
   function isSpare() {
     return first() + second() === 10;
+  }
+
+  function isStrike() {
+    return first() === 10;
   }
 
   function first() {
