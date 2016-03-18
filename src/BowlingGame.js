@@ -25,6 +25,10 @@ function Frame(position) {
   }
 
   function score() {
+    return calculateScore();
+  }
+
+  function calculateScore() {
     let score = rolledPins.reduce((first, second) => first + second, 0);
     if (nextFrame) {
       if (isLast()) score += score;
