@@ -17,7 +17,11 @@ function Frame(position) {
   }
 
   function score() {
-    let score = calculateFramePoints();
+    return calculateFramePoints() + calculateExtraPoints();
+  }
+
+  function calculateExtraPoints() {
+    let score = 0;
     if (nextFrame) {
       score += nextFrame.score();
       if (isSpare()) return score + nextFrame.firstRoll();
